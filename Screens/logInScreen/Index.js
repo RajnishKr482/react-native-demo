@@ -67,13 +67,19 @@ const Index = ({navigation}) => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log('response:', res.Token);
+        // console.log('response:', res.ClientId);
         // saveData(res.Token)
         const SetData = async () => {
           try {
             let abc = await AsyncStorage.setItem('token', res.Token);
           } catch (e) {
             alert('Failed to save the data to the storage');
+          }
+          try {
+            await AsyncStorage.setItem('ClientId', res.ClientId);
+            console.log('client id is here ', ClientId);
+          } catch (e) {
+            alert('failed to save the data to the storage');
           }
         };
         if (res.StatusCode === 200) {
